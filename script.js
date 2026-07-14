@@ -13,6 +13,7 @@ let supabaseClient = null;
 let votedWorks = new Set();
 let voteTotals = new Map(works.map((id) => [id, 0]));
 let isBusy = false;
+let pendingWorkId = null;
 
 function createVoterId() {
   if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
@@ -52,14 +53,26 @@ function renderVotes() {
     const voted = votedWorks.has(id);
     const limitReached = votedWorks.size >= voteLimit && !voted;
     const disabled = !hasSupabaseConfig || isBusy || voted || limitReached;
+    const isPending = pendingWorkId === id;
+    let label = '点赞';
+
+    if (!hasSupabaseConfig) {
+      label = '配置中';
+    } else if (isPending) {
+      label = '提交中';
+    } else if (voted) {
+      label = '已点赞';
+    } else if (limitReached) {
+      label = '票已用完';
+    }
 
     button.classList.toggle('is-voted', voted);
-    button.classList.toggle('is-loading', isBusy);
-    button.textContent = voted ? '已投票' : '投票';
+    button.classList.toggle('is-loading', isPending);
+    button.textContent = label;
     button.disabled = disabled;
     button.setAttribute(
       'aria-label',
-      voted ? '已为该作品投票' : limitReached ? '已用完 3 票' : '为该作品投票'
+      voted ? '已为该作品点赞' : limitReached ? '已用完 3 票' : '为该作品点赞'
     );
   });
 }
@@ -105,6 +118,7 @@ async function castVote(workId) {
   if (!works.includes(workId) || votedWorks.has(workId) || votedWorks.size >= voteLimit) return;
 
   isBusy = true;
+  pendingWorkId = workId;
   renderVotes();
 
   try {
@@ -131,6 +145,7 @@ async function castVote(workId) {
     setStatus('投票失败，请稍后再试');
   } finally {
     isBusy = false;
+    pendingWorkId = null;
     renderVotes();
   }
 }
