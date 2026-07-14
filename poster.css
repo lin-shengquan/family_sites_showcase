@@ -1,0 +1,125 @@
+:root {
+  --ink: #243233;
+  --muted: #6a7979;
+  --paper: #fff8ed;
+  --accent: #e96f45;
+  --green: #0d8b7d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 1600px;
+  height: 2263px;
+  overflow: hidden;
+  font-family: "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.poster {
+  width: 1600px;
+  height: 2263px;
+  padding: 88px 92px 78px;
+  background:
+    radial-gradient(circle at 8% 4%, rgba(233, 111, 69, 0.22), transparent 430px),
+    radial-gradient(circle at 91% 7%, rgba(13, 139, 125, 0.18), transparent 470px),
+    linear-gradient(180deg, #fffefb 0%, #fff7ea 100%);
+}
+
+.poster-header {
+  text-align: center;
+  margin-bottom: 54px;
+}
+
+.poster-header p {
+  margin: 0 0 18px;
+  color: var(--green);
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.poster-header h1 {
+  margin: 0;
+  font-size: 112px;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.poster-header span {
+  display: block;
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 34px;
+}
+
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.poster-grid article {
+  overflow: hidden;
+  border: 3px solid rgba(36, 50, 51, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 46px rgba(36, 50, 51, 0.12);
+}
+
+.poster-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.poster-grid b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 76px;
+  padding: 0 12px;
+  border-top: 2px solid rgba(36, 50, 51, 0.1);
+  font-size: 26px;
+  text-align: center;
+}
+
+.poster-footer {
+  display: grid;
+  grid-template-columns: 1fr 310px;
+  align-items: center;
+  gap: 44px;
+  margin-top: 74px;
+  padding: 44px 54px;
+  border: 4px solid rgba(13, 139, 125, 0.22);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.poster-footer h2 {
+  margin: 0 0 16px;
+  color: var(--green);
+  font-size: 58px;
+}
+
+.poster-footer p {
+  margin: 0;
+  max-width: 850px;
+  color: var(--muted);
+  font-size: 34px;
+  line-height: 1.5;
+}
+
+.qr {
+  width: 310px;
+  height: 310px;
+  padding: 18px;
+  border-radius: 8px;
+  background: white;
+  border: 3px solid rgba(36, 50, 51, 0.14);
+}
