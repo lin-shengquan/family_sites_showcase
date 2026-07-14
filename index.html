@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI 家庭网站作品展</title>
+  <title>AI 家庭网站作品展数据库投票</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,9 +11,10 @@
     <header class="site-header">
       <p class="eyebrow">AI 网站设计营</p>
       <h1>家庭网站作品展</h1>
-      <p class="subhead">点击作品图片可访问网站。每位家长最多可投 3 票，每个作品限投 1 票。</p>
+      <p class="subhead">点击作品图片可访问网站。投票会写入线上数据库，每位家长最多可投 3 票，每个作品限投 1 票。</p>
       <div class="vote-status" aria-live="polite">
         已投 <strong id="usedVotes">0</strong> / 3 票
+        <span id="dbStatus" class="db-status">数据库连接中</span>
       </div>
     </header>
 
@@ -23,7 +24,10 @@
           <img src="assets/screenshots/yy.png" alt="原毓作品主页截图">
         </a>
         <div class="card-footer">
-          <span>原毓</span>
+          <div>
+            <span>原毓</span>
+            <small><strong data-count="yy">0</strong> 票</small>
+          </div>
           <button type="button" class="vote-button" data-vote="yy">点赞</button>
         </div>
       </article>
@@ -33,7 +37,10 @@
           <img src="assets/screenshots/dc.png" alt="道翀作品主页截图">
         </a>
         <div class="card-footer">
-          <span>道翀</span>
+          <div>
+            <span>道翀</span>
+            <small><strong data-count="dc">0</strong> 票</small>
+          </div>
           <button type="button" class="vote-button" data-vote="dc">点赞</button>
         </div>
       </article>
@@ -43,7 +50,10 @@
           <img src="assets/screenshots/lt.png" alt="林通作品主页截图">
         </a>
         <div class="card-footer">
-          <span>林通</span>
+          <div>
+            <span>林通</span>
+            <small><strong data-count="lt">0</strong> 票</small>
+          </div>
           <button type="button" class="vote-button" data-vote="lt">点赞</button>
         </div>
       </article>
@@ -53,7 +63,10 @@
           <img src="assets/screenshots/yufan.png" alt="羽帆作品主页截图">
         </a>
         <div class="card-footer">
-          <span>羽帆</span>
+          <div>
+            <span>羽帆</span>
+            <small><strong data-count="yufan">0</strong> 票</small>
+          </div>
           <button type="button" class="vote-button" data-vote="yufan">点赞</button>
         </div>
       </article>
@@ -63,7 +76,10 @@
           <img src="assets/screenshots/ym.png" alt="堉铭作品主页截图">
         </a>
         <div class="card-footer">
-          <span>堉铭</span>
+          <div>
+            <span>堉铭</span>
+            <small><strong data-count="ym">0</strong> 票</small>
+          </div>
           <button type="button" class="vote-button" data-vote="ym">点赞</button>
         </div>
       </article>
@@ -73,7 +89,10 @@
           <img src="assets/screenshots/ziyi.png" alt="梓依作品主页截图">
         </a>
         <div class="card-footer">
-          <span>梓依</span>
+          <div>
+            <span>梓依</span>
+            <small><strong data-count="ziyi">0</strong> 票</small>
+          </div>
           <button type="button" class="vote-button" data-vote="ziyi">点赞</button>
         </div>
       </article>
@@ -83,7 +102,10 @@
           <img src="assets/screenshots/hs.png" alt="泓胜作品主页截图">
         </a>
         <div class="card-footer">
-          <span>泓胜</span>
+          <div>
+            <span>泓胜</span>
+            <small><strong data-count="hs">0</strong> 票</small>
+          </div>
           <button type="button" class="vote-button" data-vote="hs">点赞</button>
         </div>
       </article>
@@ -93,12 +115,17 @@
           <img src="assets/screenshots/jh.png" alt="靖淮作品主页截图">
         </a>
         <div class="card-footer">
-          <span>靖淮</span>
+          <div>
+            <span>靖淮</span>
+            <small><strong data-count="jh">0</strong> 票</small>
+          </div>
           <button type="button" class="vote-button" data-vote="jh">点赞</button>
         </div>
       </article>
     </section>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
