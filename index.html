@@ -7,94 +7,120 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <nav class="topbar" aria-label="页面导航">
+    <a class="brand" href="#top" aria-label="返回顶部">
+      <span class="brand-mark">AI</span>
+      <span>网站设计营</span>
+    </a>
+    <a class="topbar-link" href="#works">浏览作品</a>
+  </nav>
+
   <main class="page-shell">
-    <header class="site-header">
-      <p class="eyebrow">AI 网站设计营</p>
+    <header class="site-header" id="top">
+      <p class="eyebrow">Student Website Gallery</p>
       <h1>家庭网站作品展</h1>
-      <p class="subhead">点击作品图片即可访问同学们制作的家庭网站，欢迎浏览每一份用心完成的作品。</p>
+      <p class="subhead">8 位同学用 AI 和网页设计记录自己的家庭故事。点击任意作品卡片，即可进入对应网站参观。</p>
+      <div class="hero-meta" aria-label="作品展信息">
+        <span>8 个作品</span>
+        <span>手机可浏览</span>
+        <span>纯展示入口</span>
+      </div>
     </header>
 
-    <section class="gallery" aria-label="家庭网站作品列表">
+    <section class="gallery" id="works" aria-label="家庭网站作品列表">
       <article class="site-card" data-id="yy">
-        <a class="site-link" href="https://lin-shengquan.github.io/yy_family_website/" target="_blank" rel="noopener">
+        <a class="site-link" href="https://lin-shengquan.github.io/yy_family_website/" target="_blank" rel="noopener" aria-label="打开原毓的家庭网站作品">
+          <span class="card-index">01</span>
           <img src="assets/screenshots/yy.png" alt="原毓作品主页截图">
+          <span class="card-footer">
+            <span><b>原毓</b><small>家庭网站作品</small></span>
+            <em>打开</em>
+          </span>
         </a>
-        <div class="card-footer">
-          <span>原毓</span>
-          <small>点击查看作品</small>
-        </div>
       </article>
 
       <article class="site-card" data-id="dc">
-        <a class="site-link" href="https://lin-shengquan.github.io/dc_family_website/" target="_blank" rel="noopener">
+        <a class="site-link" href="https://lin-shengquan.github.io/dc_family_website/" target="_blank" rel="noopener" aria-label="打开道翀的家庭网站作品">
+          <span class="card-index">02</span>
           <img src="assets/screenshots/dc.png" alt="道翀作品主页截图">
+          <span class="card-footer">
+            <span><b>道翀</b><small>家庭网站作品</small></span>
+            <em>打开</em>
+          </span>
         </a>
-        <div class="card-footer">
-          <span>道翀</span>
-          <small>点击查看作品</small>
-        </div>
       </article>
 
       <article class="site-card" data-id="lt">
-        <a class="site-link" href="https://lin-shengquan.github.io/lt_family_website/" target="_blank" rel="noopener">
+        <a class="site-link" href="https://lin-shengquan.github.io/lt_family_website/" target="_blank" rel="noopener" aria-label="打开林通的家庭网站作品">
+          <span class="card-index">03</span>
           <img src="assets/screenshots/lt.png" alt="林通作品主页截图">
+          <span class="card-footer">
+            <span><b>林通</b><small>家庭网站作品</small></span>
+            <em>打开</em>
+          </span>
         </a>
-        <div class="card-footer">
-          <span>林通</span>
-          <small>点击查看作品</small>
-        </div>
       </article>
 
       <article class="site-card" data-id="yufan">
-        <a class="site-link" href="https://lin-shengquan.github.io/yufan_family_website/" target="_blank" rel="noopener">
+        <a class="site-link" href="https://lin-shengquan.github.io/yufan_family_website/" target="_blank" rel="noopener" aria-label="打开羽帆的家庭网站作品">
+          <span class="card-index">04</span>
           <img src="assets/screenshots/yufan.png" alt="羽帆作品主页截图">
+          <span class="card-footer">
+            <span><b>羽帆</b><small>家庭网站作品</small></span>
+            <em>打开</em>
+          </span>
         </a>
-        <div class="card-footer">
-          <span>羽帆</span>
-          <small>点击查看作品</small>
-        </div>
       </article>
 
       <article class="site-card" data-id="ym">
-        <a class="site-link" href="https://lin-shengquan.github.io/ym_family_website/" target="_blank" rel="noopener">
+        <a class="site-link" href="https://lin-shengquan.github.io/ym_family_website/" target="_blank" rel="noopener" aria-label="打开堉铭的家庭网站作品">
+          <span class="card-index">05</span>
           <img src="assets/screenshots/ym.png" alt="堉铭作品主页截图">
+          <span class="card-footer">
+            <span><b>堉铭</b><small>家庭网站作品</small></span>
+            <em>打开</em>
+          </span>
         </a>
-        <div class="card-footer">
-          <span>堉铭</span>
-          <small>点击查看作品</small>
-        </div>
       </article>
 
       <article class="site-card" data-id="ziyi">
-        <a class="site-link" href="https://lin-shengquan.github.io/ziyi_family_website/" target="_blank" rel="noopener">
+        <a class="site-link" href="https://lin-shengquan.github.io/ziyi_family_website/" target="_blank" rel="noopener" aria-label="打开梓依的家庭网站作品">
+          <span class="card-index">06</span>
           <img src="assets/screenshots/ziyi.png" alt="梓依作品主页截图">
+          <span class="card-footer">
+            <span><b>梓依</b><small>家庭网站作品</small></span>
+            <em>打开</em>
+          </span>
         </a>
-        <div class="card-footer">
-          <span>梓依</span>
-          <small>点击查看作品</small>
-        </div>
       </article>
 
       <article class="site-card" data-id="hs">
-        <a class="site-link" href="https://lin-shengquan.github.io/hs_family_website/" target="_blank" rel="noopener">
+        <a class="site-link" href="https://lin-shengquan.github.io/hs_family_website/" target="_blank" rel="noopener" aria-label="打开泓胜的家庭网站作品">
+          <span class="card-index">07</span>
           <img src="assets/screenshots/hs.png" alt="泓胜作品主页截图">
+          <span class="card-footer">
+            <span><b>泓胜</b><small>家庭网站作品</small></span>
+            <em>打开</em>
+          </span>
         </a>
-        <div class="card-footer">
-          <span>泓胜</span>
-          <small>点击查看作品</small>
-        </div>
       </article>
 
       <article class="site-card" data-id="jh">
-        <a class="site-link" href="https://lin-shengquan.github.io/jh_family_website/" target="_blank" rel="noopener">
+        <a class="site-link" href="https://lin-shengquan.github.io/jh_family_website/" target="_blank" rel="noopener" aria-label="打开靖淮的家庭网站作品">
+          <span class="card-index">08</span>
           <img src="assets/screenshots/jh.png" alt="靖淮作品主页截图">
+          <span class="card-footer">
+            <span><b>靖淮</b><small>家庭网站作品</small></span>
+            <em>打开</em>
+          </span>
         </a>
-        <div class="card-footer">
-          <span>靖淮</span>
-          <small>点击查看作品</small>
-        </div>
       </article>
     </section>
+
+    <footer class="page-footer">
+      <span>AI 网站设计营</span>
+      <span>Family Website Showcase</span>
+    </footer>
   </main>
 </body>
 </html>
