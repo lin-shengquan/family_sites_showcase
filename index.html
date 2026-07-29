@@ -9,14 +9,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav class="topbar" aria-label="页面导航">
-    <a class="brand" href="#top" aria-label="返回顶部">
-      <span class="brand-mark">AI</span>
-      <span>网站设计营</span>
-    </a>
-    <a class="topbar-link" href="#works">浏览作品</a>
-  </nav>
-
   <main class="page-shell">
     <header class="site-header" id="top">
       <p class="eyebrow">Student Website Gallery</p>
@@ -30,7 +22,9 @@
 
       <div class="hero-showcase" aria-label="作品快速预览">
         <a class="hero-device hero-device-main" id="hero-main-link" href="https://lin-shengquan.github.io/yy_family_website/" target="_blank" rel="noopener" aria-label="打开当前预览作品">
-          <img id="hero-main-img" src="assets/screenshots/yy.png" alt="原毓作品主页截图">
+          <span class="hero-scroll-viewport">
+            <span class="hero-scroll-track" id="hero-scroll-track"></span>
+          </span>
         </a>
         <a class="hero-device hero-device-side hero-device-left" id="hero-left-link" href="https://lin-shengquan.github.io/jh_family_website/" target="_blank" rel="noopener" aria-label="打开上一件预览作品">
           <img id="hero-left-img" src="assets/screenshots/jh.png" alt="靖淮作品主页截图">
@@ -200,7 +194,7 @@
     });
 
     const heroMainLink = document.getElementById("hero-main-link");
-    const heroMainImg = document.getElementById("hero-main-img");
+    const heroScrollTrack = document.getElementById("hero-scroll-track");
     const heroLeftLink = document.getElementById("hero-left-link");
     const heroLeftImg = document.getElementById("hero-left-img");
     const heroRightLink = document.getElementById("hero-right-link");
@@ -212,6 +206,7 @@
     const heroNext = document.getElementById("hero-next");
     let activeHeroIndex = 0;
     let heroTimer = null;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function padIndex(index) {
       return String(index + 1).padStart(2, "0");
@@ -235,7 +230,10 @@
       const previous = itemAt(activeHeroIndex - 1);
       const next = itemAt(activeHeroIndex + 1);
 
-      setHeroLink(heroMainLink, heroMainImg, current);
+      heroMainLink.href = current.href;
+      heroMainLink.setAttribute("aria-label", `打开${current.title}的家庭网站作品`);
+      heroScrollTrack.style.transitionDuration = reducedMotion ? "1ms" : "";
+      heroScrollTrack.style.transform = `translate3d(${-activeHeroIndex * 100}%, 0, 0)`;
       setHeroLink(heroLeftLink, heroLeftImg, previous);
       setHeroLink(heroRightLink, heroRightImg, next);
       heroTitle.textContent = current.title;
@@ -258,6 +256,16 @@
     }
 
     showcaseItems.forEach((item, index) => {
+      const slide = document.createElement("span");
+      slide.className = "hero-scroll-slide";
+      slide.setAttribute("aria-hidden", "true");
+
+      const slideImage = document.createElement("img");
+      slideImage.src = item.image;
+      slideImage.alt = item.alt || `${item.title}作品主页截图`;
+      slide.appendChild(slideImage);
+      heroScrollTrack.appendChild(slide);
+
       const dot = document.createElement("button");
       dot.type = "button";
       dot.className = "hero-dot";
@@ -273,7 +281,7 @@
     heroNext.addEventListener("click", () => moveHero(1));
     renderHero(0);
 
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!reducedMotion) {
       restartHeroTimer();
     }
   </script>
