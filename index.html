@@ -28,16 +28,23 @@
         <span>纯展示入口</span>
       </div>
 
-      <div class="hero-showcase" aria-hidden="true">
-        <div class="hero-device hero-device-main">
-          <img src="assets/screenshots/yy.png" alt="">
+      <div class="hero-showcase" aria-label="作品快速预览">
+        <a class="hero-device hero-device-main" id="hero-main-link" href="https://lin-shengquan.github.io/yy_family_website/" target="_blank" rel="noopener" aria-label="打开当前预览作品">
+          <img id="hero-main-img" src="assets/screenshots/yy.png" alt="原毓作品主页截图">
+        </a>
+        <a class="hero-device hero-device-side hero-device-left" id="hero-left-link" href="https://lin-shengquan.github.io/jh_family_website/" target="_blank" rel="noopener" aria-label="打开上一件预览作品">
+          <img id="hero-left-img" src="assets/screenshots/jh.png" alt="靖淮作品主页截图">
+        </a>
+        <a class="hero-device hero-device-side hero-device-right" id="hero-right-link" href="https://lin-shengquan.github.io/dc_family_website/" target="_blank" rel="noopener" aria-label="打开下一件预览作品">
+          <img id="hero-right-img" src="assets/screenshots/dc.png" alt="道翀作品主页截图">
+        </a>
+        <button class="hero-control hero-control-prev" type="button" id="hero-prev" aria-label="切换到上一个作品">‹</button>
+        <button class="hero-control hero-control-next" type="button" id="hero-next" aria-label="切换到下一个作品">›</button>
+        <div class="hero-carousel-caption" aria-live="polite">
+          <b id="hero-title">原毓</b>
+          <span id="hero-count">01 / 11</span>
         </div>
-        <div class="hero-device hero-device-side hero-device-left">
-          <img src="assets/screenshots/dc.png" alt="">
-        </div>
-        <div class="hero-device hero-device-side hero-device-right">
-          <img src="assets/screenshots/yufan.png" alt="">
-        </div>
+        <div class="hero-dots" id="hero-dots" aria-label="选择预览作品"></div>
       </div>
     </header>
 
@@ -177,5 +184,98 @@
       <span>Family Website Showcase</span>
     </footer>
   </main>
+
+  <script>
+    const showcaseItems = Array.from(document.querySelectorAll(".site-card")).map((card) => {
+      const link = card.querySelector(".site-link");
+      const image = card.querySelector("img");
+      const title = card.querySelector("b");
+
+      return {
+        title: title ? title.textContent.trim() : "",
+        href: link ? link.href : "#",
+        image: image ? image.getAttribute("src") : "",
+        alt: image ? image.alt : ""
+      };
+    });
+
+    const heroMainLink = document.getElementById("hero-main-link");
+    const heroMainImg = document.getElementById("hero-main-img");
+    const heroLeftLink = document.getElementById("hero-left-link");
+    const heroLeftImg = document.getElementById("hero-left-img");
+    const heroRightLink = document.getElementById("hero-right-link");
+    const heroRightImg = document.getElementById("hero-right-img");
+    const heroTitle = document.getElementById("hero-title");
+    const heroCount = document.getElementById("hero-count");
+    const heroDots = document.getElementById("hero-dots");
+    const heroPrev = document.getElementById("hero-prev");
+    const heroNext = document.getElementById("hero-next");
+    let activeHeroIndex = 0;
+    let heroTimer = null;
+
+    function padIndex(index) {
+      return String(index + 1).padStart(2, "0");
+    }
+
+    function itemAt(index) {
+      return showcaseItems[(index + showcaseItems.length) % showcaseItems.length];
+    }
+
+    function setHeroLink(link, img, item) {
+      link.href = item.href;
+      img.src = item.image;
+      img.alt = item.alt || `${item.title}作品主页截图`;
+    }
+
+    function renderHero(index) {
+      if (!showcaseItems.length) return;
+
+      activeHeroIndex = (index + showcaseItems.length) % showcaseItems.length;
+      const current = itemAt(activeHeroIndex);
+      const previous = itemAt(activeHeroIndex - 1);
+      const next = itemAt(activeHeroIndex + 1);
+
+      setHeroLink(heroMainLink, heroMainImg, current);
+      setHeroLink(heroLeftLink, heroLeftImg, previous);
+      setHeroLink(heroRightLink, heroRightImg, next);
+      heroTitle.textContent = current.title;
+      heroCount.textContent = `${padIndex(activeHeroIndex)} / ${String(showcaseItems.length).padStart(2, "0")}`;
+
+      Array.from(heroDots.children).forEach((dot, dotIndex) => {
+        dot.classList.toggle("active", dotIndex === activeHeroIndex);
+        dot.setAttribute("aria-pressed", dotIndex === activeHeroIndex ? "true" : "false");
+      });
+    }
+
+    function moveHero(step) {
+      renderHero(activeHeroIndex + step);
+      restartHeroTimer();
+    }
+
+    function restartHeroTimer() {
+      window.clearInterval(heroTimer);
+      heroTimer = window.setInterval(() => renderHero(activeHeroIndex + 1), 4200);
+    }
+
+    showcaseItems.forEach((item, index) => {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "hero-dot";
+      dot.setAttribute("aria-label", `预览${item.title}的作品`);
+      dot.addEventListener("click", () => {
+        renderHero(index);
+        restartHeroTimer();
+      });
+      heroDots.appendChild(dot);
+    });
+
+    heroPrev.addEventListener("click", () => moveHero(-1));
+    heroNext.addEventListener("click", () => moveHero(1));
+    renderHero(0);
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      restartHeroTimer();
+    }
+  </script>
 </body>
 </html>
