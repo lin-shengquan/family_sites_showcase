@@ -408,6 +408,11 @@ h1 {
   font-weight: 600;
 }
 
+.card-footer .password-note {
+  color: #b45309;
+  font-weight: 800;
+}
+
 .card-footer em {
   flex: 0 0 auto;
   padding: 7px 12px;
